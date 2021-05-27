@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7759431e303e2d722a264a8a991a9e84",
+    "content-hash": "0765a493a7ddb91587857c885899805b",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -858,16 +858,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v8.42.1",
+            "version": "v8.43.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "41ec4897a70eb8729cf0ff34a8354413c54e42a6"
+                "reference": "3ec63771a07e251f4fb6c7ef2411a79a314bba65"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/41ec4897a70eb8729cf0ff34a8354413c54e42a6",
-                "reference": "41ec4897a70eb8729cf0ff34a8354413c54e42a6",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/3ec63771a07e251f4fb6c7ef2411a79a314bba65",
+                "reference": "3ec63771a07e251f4fb6c7ef2411a79a314bba65",
                 "shasum": ""
             },
             "require": {
@@ -1022,7 +1022,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2021-05-19T13:03:18+00:00"
+            "time": "2021-05-25T13:06:44+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -1091,6 +1091,63 @@
                 "source": "https://github.com/laravel/tinker/tree/v2.6.1"
             },
             "time": "2021-03-02T16:53:12+00:00"
+        },
+        {
+            "name": "laravel/ui",
+            "version": "v3.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/ui.git",
+                "reference": "e2478cd0342a92ec1c8c77422553bda8ee004fd0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/ui/zipball/e2478cd0342a92ec1c8c77422553bda8ee004fd0",
+                "reference": "e2478cd0342a92ec1c8c77422553bda8ee004fd0",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "^8.0",
+                "illuminate/filesystem": "^8.0",
+                "illuminate/support": "^8.0",
+                "php": "^7.3|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Ui\\UiServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Ui\\": "src/",
+                    "Illuminate\\Foundation\\Auth\\": "auth-backend/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Laravel UI utilities and presets.",
+            "keywords": [
+                "laravel",
+                "ui"
+            ],
+            "support": {
+                "source": "https://github.com/laravel/ui/tree/v3.2.1"
+            },
+            "time": "2021-04-27T18:17:41+00:00"
         },
         {
             "name": "league/commonmark",
