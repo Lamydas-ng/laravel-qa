@@ -23,8 +23,10 @@ class CreateQuestionsTable extends Migration
             $table->integer('votes')->default(0);
             $table->unsignedInteger('best_answer_id')->nullable(true);
           //  $table->unsignedInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable(true);
             $table->timestamps();
-            $table->foreignId('user_id')->reference('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users');
+           //
         });
     }
 
