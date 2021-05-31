@@ -43,6 +43,7 @@ class User extends Authenticatable
     public function questions()
     {
         return $this->hasMany(Question::class);
+<<<<<<< HEAD
     }
 
     public function setTitleAttribute($value)
@@ -50,4 +51,7 @@ class User extends Authenticatable
         $this->attributes['title'] = $value;
         $this->attributes['slug'] = str::slug($value);
     }
+=======
+    }   
+>>>>>>> Lesson-3
 }
