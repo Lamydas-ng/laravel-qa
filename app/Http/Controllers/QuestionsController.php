@@ -67,7 +67,7 @@ class QuestionsController extends Controller
      */
     public function edit(question $question)
     {
-    return view('questions.edit', compact('question'));
+        return view('questions.edit', compact('question'));
     }
 
     /**
@@ -93,6 +93,7 @@ class QuestionsController extends Controller
      */
     public function destroy(question $question)
     {
-        //
+        $question->delete();
+        return redirect("/questions")->with("success","Your Question has been deleted");
     }
 }
