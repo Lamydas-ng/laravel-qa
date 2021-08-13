@@ -1,12 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Http\Requests\AskQuestionRequest;
 use App\Models\question;
 use Illuminate\Http\Request;
 
 class QuestionsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware("auth", ["except"=>['index','show']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,10 +24,9 @@ class QuestionsController extends Controller
         //  view('questions.index', compact('questions'))->render();
         //  dd(\DB::getQueryLog());
 
-     
+
         $questions =  Question::with('user')->latest()->paginate(5);
         return view('questions.index', compact('questions'));
-         
     }
 
     /**
@@ -32,8 +36,8 @@ class QuestionsController extends Controller
      */
     public function create()
     {
-       $question = new Question();
-       return view('questions.create', compact('question'));
+        $question = new Question();
+        return view('questions.create', compact('question'));
     }
 
     /**
@@ -56,8 +60,8 @@ class QuestionsController extends Controller
      */
     public function show(question $question)
     {
-       $question->increment("view");
-       return view("questions.show", compact('question'));
+        $question->increment("view");
+        return view("questions.show", compact('question'));
     }
 
     /**
@@ -68,6 +72,7 @@ class QuestionsController extends Controller
      */
     public function edit(question $question)
     {
+        $this->authorize("update", $question);
         return view('questions.edit', compact('question'));
     }
 
@@ -80,10 +85,9 @@ class QuestionsController extends Controller
      */
     public function update(AskQuestionRequest $request, question $question)
     {
-        
-        $question->update($request->only('title','body'));
-        return redirect('/questions')->with('success','Your question has been updated');
-
+        $this->authorize("update", $question);
+        $question->update($request->only('title', 'body'));
+        return redirect('/questions')->with('success', 'Your question has been updated');
     }
 
     /**
@@ -94,7 +98,8 @@ class QuestionsController extends Controller
      */
     public function destroy(question $question)
     {
+        $this->authorize("delete", $question);
         $question->delete();
-        return redirect("/questions")->with("success","Your Question has been deleted");
+        return redirect("/questions")->with("success", "Your Question has been deleted");
     }
 }
