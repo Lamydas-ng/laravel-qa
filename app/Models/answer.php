@@ -8,16 +8,25 @@ use Illuminate\Database\Eloquent\Model;
 class answer extends Model
 {
     use HasFactory;
-    public function question( )
+    public function question()
     {
         return $this->belongsTo(question::class);
     }
-    public function user( )
+    public function user()
     {
         return $this->belongsTo(user::class);
     }
-     public function getBodyHtmlAttribute()
+    public function getBodyHtmlAttribute()
     {
         return \Parsedown::instance()->text($this->body);
+    }
+    protected static function booted()
+    {
+        parent::boot();
+        static::created(
+            function ($answer) {
+                $answer->question->increment('answers_count');
+            }
+        );
     }
 }
