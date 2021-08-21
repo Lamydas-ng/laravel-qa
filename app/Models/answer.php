@@ -16,6 +16,11 @@ class answer extends Model
     {
         return $this->belongsTo(user::class);
     }
+
+    public function getCreatedDateAttribute()
+    {
+        return $this->created_at->diffForHumans();
+    }
     public function getBodyHtmlAttribute()
     {
         return \Parsedown::instance()->text($this->body);
