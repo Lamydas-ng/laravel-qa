@@ -9,6 +9,7 @@
                  @include ('layouts._message')
 
                 @foreach ($answers as $answer)
+                <?php //echo ($answer); ?>
                     <div class="media">
                         <div class="d-fex flex-column vote-controls">
                             <a title="This answer is useful" class="vote-up">
@@ -18,7 +19,7 @@
                             <a title="This answer is not useful" class="vote-down off">
                                 <i class="fas fa-caret-down fa-3x"></i>
                             </a>
-                            <a title="Mark this answer as best answer" class="vote-accepted mt-2">
+                            <a title="Mark this answer as best answer" class="{{ $answer->status }} mt-2">
                                 <i class="fas fa-check fa-2x"></i>
                             </a>
                         </div>
