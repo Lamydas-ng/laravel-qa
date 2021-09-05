@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Answer extends Model
 {
+    use HasFactory;
+
     protected $fillable = ['body', 'user_id'];
 
     public function question()
@@ -36,10 +38,10 @@ class Answer extends Model
         static::deleted(function ($answer) {
             $question = $answer->question;
             $question->decrement('answers_count');
-            // if ($question->best_answer_id === $answer->id) {
-            //     $question->best_answer_id = null;
-            //     $question->save();
-            // }
+            if ($question->best_answer_id === $answer->id) {
+                $question->best_answer_id = null;
+                $question->save();
+            }
         });
     }
 
@@ -47,7 +49,7 @@ class Answer extends Model
     {
         return $this->created_at->diffForHumans();
     }
-   public function getStatusAttribute()
+    public function getStatusAttribute()
     {
         return $this->isBest() ? 'vote-accepted' : '';
     }

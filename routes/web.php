@@ -35,3 +35,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/answers/{answer}/accept', App\Http\Controllers\AcceptAnswerController::class)->name('answers.accept');
+
+Route::post('/questions/{question}/favorites', [App\Http\Controllers\FavoritesController::class,'store'])->name('questions.favorite');
+Route::delete('/questions/{question}/favorites', [App\Http\Controllers\FavoritesController::class,'destroy'])->name('questions.unfavorite');
