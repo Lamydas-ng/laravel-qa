@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\VoteQuestionController;
+use App\Http\Controllers\VoteAnswerController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,3 +41,6 @@ Route::post('/answers/{answer}/accept', App\Http\Controllers\AcceptAnswerControl
 
 Route::post('/questions/{question}/favorites', [App\Http\Controllers\FavoritesController::class,'store'])->name('questions.favorite');
 Route::delete('/questions/{question}/favorites', [App\Http\Controllers\FavoritesController::class,'destroy'])->name('questions.unfavorite');
+
+Route::post('/questions/{question}/vote', VoteQuestionController::class);
+Route::post('/answers/{answer}/vote', VoteAnswerController::class);

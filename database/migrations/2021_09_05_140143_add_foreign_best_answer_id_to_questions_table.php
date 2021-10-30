@@ -13,12 +13,12 @@ class AddForeignBestAnswerIdToQuestionsTable extends Migration
      */
     public function up()
     {
-        Schema::table('questions', function (Blueprint $table) {
-            $table->foreign('best_answer_id')
-                  ->references('id')
-                  ->on('answers')
-                  ->onDelete('SET NULL');
-        });
+        // Schema::table('questions', function (Blueprint $table) {
+        //     $table->foreign('best_answer_id')
+        //           ->references('id')
+        //           ->on('answers')
+        //           ->onDelete('SET NULL');
+        // });
     }
 
     /**
@@ -28,8 +28,8 @@ class AddForeignBestAnswerIdToQuestionsTable extends Migration
      */
     public function down()
     {
-        Schema::table('questions', function (Blueprint $table) {
-            $table->dropForeign(['best_answer_id']);
-        });
+        // Schema::table('questions', function (Blueprint $table) {
+        //     $table->dropForeign(['best_answer_id']);
+        // });
     }
 }
