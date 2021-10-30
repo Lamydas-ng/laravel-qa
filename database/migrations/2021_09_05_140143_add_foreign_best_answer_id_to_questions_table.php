@@ -18,7 +18,7 @@ class AddForeignBestAnswerIdToQuestionsTable extends Migration
         //           ->references('id')
         //           ->on('answers')
         //           ->onDelete('SET NULL');
-        // });
+        // });VotableTrait.php
     }
 
     /**

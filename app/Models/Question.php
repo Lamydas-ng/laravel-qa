@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Question extends Model
 {
+    use VotableTrait;
+
     use HasFactory;
     protected $fillable = ['title', 'body','user_id'];
     public function user()
@@ -72,18 +74,5 @@ class Question extends Model
     {
         return $this->favorites->count();
     }
-    public function votes()
-    {
-        return $this->morphToMany(User::class, 'votable');
-    }
 
-    public function upVotes()
-    {
-        return $this->votes()->wherePivot('vote', 1);
-    }
-
-    public function downVotes()
-    {
-        return $this->votes()->wherePivot('vote', -1);
-    }
 }
