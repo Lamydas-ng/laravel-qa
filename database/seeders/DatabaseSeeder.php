@@ -25,10 +25,10 @@ class DatabaseSeeder extends Seeder
         //             );
         //       });
         // });
- $this->call([
+        $this->call([
             UsersQuestionsAnswersTableSeeder::class,
             FavoritesTableSeeder::class,
+            VotablesTableSeeder::class,
         ]) ;
-
     }
 }

@@ -16,7 +16,7 @@ use App\Http\Controllers\VoteAnswerController;
 |
 */
 
-Route::get('/', 'QuestionsController@index');
+Route::get('/', [App\Http\Controllers\QuestionsController::class, 'index']);
 
 Auth::routes();
 
