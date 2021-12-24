@@ -36,7 +36,7 @@ class AnswersController extends Controller
      * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-     public function edit(Question $question, Answer $answer)
+    public function edit(Question $question, Answer $answer)
     {
         $this->authorize('update', $answer);
 
@@ -44,7 +44,7 @@ class AnswersController extends Controller
     }
 
     /**
-	@@ -41,9 +43,15 @@ public function edit(Answer $answer)
+    @@ -41,9 +43,15 @@ public function edit(Answer $answer)
      * @param  \App\Answer  $answer
      * @return \Illuminate\Http\Response
      */
@@ -55,15 +55,21 @@ class AnswersController extends Controller
         $answer->update($request->validate([
             'body' => 'required',
         ]));
+        if ($request->expectsJson()) {
+            return response()->json([
+                'message' => 'Your answer has been updated',
+                'body_html' => $answer->body_html
+            ]);
+        }
 
         return redirect()->route('questions.show', $question->slug)->with('success', 'Your answer has been updated');
     }
-     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Answer  $answer
-     * @return \Illuminate\Http\Response
-     */
+    /**
+    * Remove the specified resource from storage.
+    *
+    * @param  \App\Answer  $answer
+    * @return \Illuminate\Http\Response
+    */
     public function destroy(Question $question, Answer $answer)
     {
         $this->authorize('delete', $answer);
