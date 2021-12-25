@@ -32,7 +32,8 @@ export default {
             .catch(err => {
                 this.$toast.error(err.response.data.message, "Error", { timeout: 3000 });
             });
-        }, destroy () {
+        },
+        destroy () {
             this.$toast.question('Are you sure about that?', "Confirm", {
             timeout: 20000,
             close: false,
