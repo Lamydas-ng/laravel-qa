@@ -1,8 +1,6 @@
 <answer :answer="{{ $answer }}" inline-template>
     <div class="media post">
-        @include ('shared._vote', [
-            'model' => $answer
-        ])
+        <vote :model="{{ $answer }}" name="answer"></vote>
 
         <div class="media-body">
             <form v-if="editing" @submit.prevent="update">
@@ -20,7 +18,7 @@
                             @can ('update', $answer)
                                 <a @click.prevent="edit" class="btn btn-sm btn-outline-info">Edit</a>
                             @endcan
-                             @can ('delete', $answer)
+                            @can ('delete', $answer)
                                 <button @click="destroy" class="btn btn-sm btn-outline-danger">Delete</button>
                             @endcan
                         </div>

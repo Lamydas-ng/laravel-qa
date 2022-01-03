@@ -17,7 +17,13 @@ class VoteQuestionController extends Controller
     {
         $vote = (int) request()->vote;
         $user = User::findOrFail(auth()->id());
-        $user->voteAnswer($question, $vote);
+        $votesCount = $user->voteAnswer($question, $vote);
+        if (request()->expectsJson()) {
+            return response()->json([
+                'message' => 'Thanks for the feedback',
+                'votesCount' => $votesCount
+            ]);
+        }
         return back();
     }
 }

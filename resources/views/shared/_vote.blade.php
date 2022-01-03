@@ -47,4 +47,5 @@
     @elseif ($model instanceof App\Models\Answer)
         <accept :answer="{{ $model }}"></accept>
     @endif
+
 </div>
