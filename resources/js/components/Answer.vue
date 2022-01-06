@@ -1,3 +1,34 @@
+<template>
+    <div class="media post">
+        <vote :model="answer" name="answer"></vote>
+
+        <div class="media-body">
+            <form v-if="editing" @submit.prevent="update">
+                <div class="form-group">
+                    <textarea rows="10" v-model="body" class="form-control" required></textarea>
+                </div>
+                <button class="btn btn-primary" :disabled="isInvalid">Update</button>
+                <button class="btn btn-outline-secondary" @click="cancel" type="button">Cancel</button>
+            </form>
+            <div v-else>
+                <div v-html="bodyHtml"></div>
+                <div class="row">
+                    <div class="col-4">
+                        <div class="ml-auto">
+                            <a v-if="authorize('modify', answer)" @click.prevent="edit" class="btn btn-sm btn-outline-info">Edit</a>
+                            <button  @click="destroy" class="btn btn-sm btn-outline-danger">Delete</button>
+                        </div>
+                    </div>
+                    <div class="col-4"></div>
+                    <div class="col-4">
+                        <user-info :model="answer" label="Answered"></user-info>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
 <script>
 export default {
     props: ['answer'],
@@ -20,14 +51,14 @@ export default {
             this.body = this.beforeEditCache;
             this.editing = false;
         },
-         update () {
+        update () {
             axios.patch(this.endpoint, {
                 body: this.body
             })
             .then(res => {
                 this.editing = false;
                 this.bodyHtml = res.data.body_html;
-               this.$toast.success(res.data.message, "Sucess", { timeout: 3000 });
+                this.$toast.success(res.data.message, "Sucess", { timeout: 3000 });
             })
             .catch(err => {
                 this.$toast.error(err.response.data.message, "Error", { timeout: 3000 });
