@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class AnswersController extends Controller
 {
-    protected $fillable = ['body','user_id'];
+    //protected $fillable = ['body','user_id'];
 
 
     /**
@@ -19,6 +19,16 @@ class AnswersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index');
+    }
+
+    public function index(Question $question)
+    {
+        return $question->answers()->with('user')->simplePaginate(2);
+    }
+
     public function store(Question $question, Request $request)
     {
         $question->answers()->create(

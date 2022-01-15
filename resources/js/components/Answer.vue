@@ -16,7 +16,7 @@
                     <div class="col-4">
                         <div class="ml-auto">
                             <a v-if="authorize('modify', answer)" @click.prevent="edit" class="btn btn-sm btn-outline-info">Edit</a>
-                            <button  @click="destroy" class="btn btn-sm btn-outline-danger">Delete</button>
+                            <button v-if="authorize('modify', answer)" @click="destroy" class="btn btn-sm btn-outline-danger">Delete</button>
                         </div>
                     </div>
                     <div class="col-4"></div>
