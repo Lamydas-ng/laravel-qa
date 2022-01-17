@@ -12,7 +12,7 @@ class Question extends Model
 
     use HasFactory;
     protected $fillable = ['title', 'body','user_id'];
-    protected $appends = ['created_date', 'is_favorited', 'favorites_count'];
+    protected $appends = ['created_date', 'is_favorited', 'favorites_count', 'body_html'];
     public function user()
     {
         return $this->belongsTo(User::class);
